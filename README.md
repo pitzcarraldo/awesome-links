@@ -35,3 +35,31 @@ rm -rf ~/Library/Preferences/IntelliJIdea*/options/options.xml
 - http://adaptive-images.com/
 - http://www.picarisplatform.com/picaris-image-server-platform
 - http://www.pixtulate.com/
+
+
+### Comparing ClickHouse, Druid, Pinot
+||ClickHouse|Druid|Pinot|
+|--- |--- |--- |--- |
+|Ecosystem|Matured|Matured|Incubating|
+|References|Many|Many|Some big companies (LinkedIn, Uber)|
+|Hadoop Friendly|No|Yes|Yes|
+|Support Join|NativeBroadcast join only (right side data should fit in memory)|NativeBroadcast join only (right side data should fit in memory)|Using Prestojoining data from Pinot to other data sources not in Pinot|
+|Performance|Fast|Fast|Faster than others|
+|Setup / Management|Simple(Single Type Node)|Complex than ClickHouse(Depends on PostgresQL, Zookeeper)|Complex than ClickHouse(Depends on Helix, Zookeeper)|
+|Storage|Local Storage/S3|HDFS/S3|HDFS/S3|
+|Scalability|no auto sharding|background process rebalance the data||
+|Presto Connector|Community|Official|Official|
+|System level monitoring|Community Prometheus Exporter|ExporterImply service offers monitoring platform (for fee)|3rd party prometheus monitoring|
+
+#### References
+*   Comparing these 3 db
+    *   [https://medium.com/@leventov/comparison-of-the-open-source-olap-systems-for-big-data-clickhouse-druid-and-pinot-8e042a5ed1c7](https://medium.com/@leventov/comparison-of-the-open-source-olap-systems-for-big-data-clickhouse-druid-and-pinot-8e042a5ed1c7)
+    *   [https://docs.google.com/document/d/1GiB8zoiJ4Qs10A1LdIr6lJGWTfk-0ElU8aJbejomstY/edit](https://docs.google.com/document/d/1GiB8zoiJ4Qs10A1LdIr6lJGWTfk-0ElU8aJbejomstY/edit)
+*   Druid supports JOIN: [https://imply.io/post/apache-druid-joins](https://imply.io/post/apache-druid-joins)
+*   Pinot Use Case  
+    *   [https://engineering.linkedin.com/blog/topic/pinot](https://engineering.linkedin.com/blog/topic/pinot)
+    *   [https://eng.uber.com/engineering-sql-support-on-apache-pinot/](https://eng.uber.com/engineering-sql-support-on-apache-pinot/)
+*   Discussions
+    *   [https://news.ycombinator.com/item?id=22868286](https://news.ycombinator.com/item?id=22868286)
+    *   [https://news.ycombinator.com/item?id=19825566](https://news.ycombinator.com/item?id=19825566)
+*   TimeScale DB(TimeSeries DB based on PostgresQL):  [https://www.timescale.com/](https://www.timescale.com/)
